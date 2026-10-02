@@ -1,0 +1,9 @@
+{
+  "repositoryName": "suburbia-kay",
+  "routes": [
+    {
+      "type": "homepage",
+      "path": "/"
+    }
+  ]
+}
