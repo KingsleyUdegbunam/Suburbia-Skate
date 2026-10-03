@@ -62,10 +62,10 @@ interface HomepageDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/slices
 	 */
 	slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice>;/**
-	 * Meta Title field in *Homepage*
+	 * Suburbia Skateboards field in *Homepage*
 	 *
 	 * - **Field Type**: Text
-	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **Placeholder**: The best skateboards
 	 * - **API ID Path**: homepage.meta_title
 	 * - **Tab**: SEO & Metadata
 	 * - **Documentation**: https://prismic.io/docs/fields/text

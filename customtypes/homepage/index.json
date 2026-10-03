@@ -14,8 +14,8 @@
     "SEO & Metadata": {
       "meta_title": {
         "config": {
-          "label": "Meta Title",
-          "placeholder": "A title of the page used for social media and search engines"
+          "label": "Suburbia Skateboards",
+          "placeholder": "The best skateboards"
         },
         "type": "Text"
       },
