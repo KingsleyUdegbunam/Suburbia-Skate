@@ -5,7 +5,11 @@
     "Main": {
       "slices": {
         "config": {
-          "choices": {}
+          "choices": {
+            "hero_section": {
+              "type": "SharedSlice"
+            }
+          }
         },
         "fieldset": "Slice Zone",
         "type": "Slices"

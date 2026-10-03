@@ -1,0 +1,47 @@
+{
+  "description": "HeroSection",
+  "id": "hero_section",
+  "name": "HeroSection",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "header": {
+          "config": {
+            "allowTargetBlank": true,
+            "label": "Heading",
+            "placeholder": "",
+            "single": "heading1"
+          },
+          "type": "StructuredText"
+        },
+        "body": {
+          "config": {
+            "allowTargetBlank": true,
+            "label": "Body",
+            "placeholder": "",
+            "single": "paragraph,em,strong"
+          },
+          "type": "StructuredText"
+        },
+        "button": {
+          "config": {
+            "allowTargetBlank": true,
+            "allowText": true,
+            "label": "Button",
+            "placeholder": "",
+            "repeat": false,
+            "select": null
+          },
+          "type": "Link"
+        }
+      },
+      "version": "initial"
+    }
+  ]
+}
