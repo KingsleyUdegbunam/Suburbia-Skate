@@ -32,7 +32,7 @@
         "product": {
           "config": {
             "fields": {
-              "product": {
+              "skateboard": {
                 "config": {
                   "customtypes": [
                     {
@@ -45,7 +45,7 @@
                       "id": "skateboard"
                     }
                   ],
-                  "label": "Product",
+                  "label": "Skateboard",
                   "repeat": false,
                   "select": "document"
                 },

@@ -306,14 +306,14 @@ export type HeroSectionSlice = prismic.SharedSlice<"hero_section", HeroSectionSl
  */
 export interface ProductGridSliceDefaultPrimaryProductItem {
 	/**
-	 * Product field in *ProductGrid → Default → Primary → Product*
+	 * Skateboard field in *ProductGrid → Default → Primary → Product*
 	 *
 	 * - **Field Type**: Content Relationship
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: product_grid.default.primary.product[].product
+	 * - **API ID Path**: product_grid.default.primary.product[].skateboard
 	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	product: ContentRelationshipFieldWithData<[{"fields":["name","image","price_cents","customizer_link"],"id":"skateboard"}]>;
+	skateboard: ContentRelationshipFieldWithData<[{"fields":["name","image","price_cents","customizer_link"],"id":"skateboard"}]>;
 }
 
 /**
