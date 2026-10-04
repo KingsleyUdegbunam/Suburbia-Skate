@@ -2,6 +2,7 @@ import { Bowlby_One_SC, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
+import { Header } from "../components/Header";
 
 const bowlbyOne = Bowlby_One_SC({
   variable: "--font-bowlby-sc",
@@ -24,7 +25,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${dmMono.variable} ${bowlbyOne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-mono text-zinc-800">
-        <main>{children}</main>
+        <main>
+          <Header />
+          {children}
+        </main>
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
