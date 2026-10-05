@@ -11,6 +11,9 @@
             },
             "product_grid": {
               "type": "SharedSlice"
+            },
+            "text_and_image": {
+              "type": "SharedSlice"
             }
           }
         },
