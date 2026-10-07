@@ -19,7 +19,6 @@ export function LazyYouTubePlayer({ youTubeID }: VideoProps) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          console.log("is in view");
         }
       },
       {

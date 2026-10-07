@@ -8,7 +8,6 @@ import { PrismicNextLink } from "@prismicio/next";
 export async function Header() {
   const client = createClient();
   const settings = await client.getSingle("settings");
-  console.log(settings.data.navigation);
 
   return (
     <header className="header absolute left-0 right-0 top-0 z-50 px-4 md:px-5 py-4 md:py-5 lg:py-6 h-32 md:h-40 lg:h-48">
