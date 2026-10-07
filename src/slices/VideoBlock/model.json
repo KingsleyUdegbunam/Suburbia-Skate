@@ -1,0 +1,25 @@
+{
+  "description": "VideoBlock",
+  "id": "video_block",
+  "name": "VideoBlock",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/suburbia-kay/shared-slices/video_block/default/a995e3237784646b6a25a3bff9dc3f8e56f75c2f.png?auto=compress%2Cformat",
+      "name": "Default",
+      "primary": {
+        "you_tube_video_id": {
+          "config": {
+            "label": "YouTube Video ID",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "version": "initial"
+    }
+  ]
+}
