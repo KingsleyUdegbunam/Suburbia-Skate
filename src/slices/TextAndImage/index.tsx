@@ -12,6 +12,11 @@ import clsx from "clsx";
 import { ButtonLink } from "@/src/components/ButtonLink";
 import { ParallaxImage } from "./components/ParallaxImage";
 
+declare module "react" {
+  interface CSSProperties {
+    "--index"?: number;
+  }
+}
 /**
  * Props for `TextAndImage`.
  */
@@ -20,7 +25,7 @@ export type TextAndImageProps = SliceComponentProps<Content.TextAndImageSlice>;
 /**
  * Component for "TextAndImage" Slices.
  */
-const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
+const TextAndImage: FC<TextAndImageProps> = ({ slice, index }) => {
   const THEME = slice.primary.theme;
   return (
     <Bounded
@@ -31,8 +36,9 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
         THEME === "Orange" && "bg-brand-orange text-white/90",
         THEME === "Navy" && "bg-brand-navy text-white/90",
         THEME === "Lime" && "bg-brand-lime",
-        "bg-texture overflow-hidden",
+        "bg-texture overflow-hidden sticky top-[calc(var(--index)*3rem)]",
       )}
+      style={{ "--index": index }}
     >
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
         <div
