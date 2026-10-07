@@ -3,9 +3,11 @@
 import HeroSection from "./HeroSection";
 import ProductGrid from "./ProductGrid";
 import TextAndImage from "./TextAndImage";
+import VideoBlock from "./VideoBlock";
 
 export const components = {
 	hero_section: HeroSection,
 	product_grid: ProductGrid,
-	text_and_image: TextAndImage
+	text_and_image: TextAndImage,
+	video_block: VideoBlock
 };
