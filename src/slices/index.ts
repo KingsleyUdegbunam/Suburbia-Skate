@@ -2,8 +2,10 @@
 
 import HeroSection from "./HeroSection";
 import ProductGrid from "./ProductGrid";
+import TextAndImage from "./TextAndImage";
 
 export const components = {
 	hero_section: HeroSection,
-	product_grid: ProductGrid
+	product_grid: ProductGrid,
+	text_and_image: TextAndImage
 };
