@@ -1,0 +1,46 @@
+import { FC } from "react";
+import { Content, isFilled } from "@prismicio/client";
+import {
+  PrismicRichText,
+  PrismicText,
+  SliceComponentProps,
+} from "@prismicio/react";
+
+import { Bounded } from "@/src/components/Bounded";
+import { Heading } from "@/src/components/Heading";
+import { SkateboardProduct } from "./components/SkateboardProduct";
+/**
+ * Props for `ProductGrid`.
+ */
+export type ProductGridProps = SliceComponentProps<Content.ProductGridSlice>;
+
+/**
+ * Component for "ProductGrid" Slices.
+ */
+const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
+  return (
+    <Bounded
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
+      className="bg-texture bg-brand-gray"
+    >
+      <Heading as="h2" className="text-center mb-4 md:mb-5 lg:mb-6">
+        <PrismicText field={slice.primary.heading} />
+      </Heading>
+      <div className="text-center mb-6 md:mb-8 lg:mb-10">
+        <PrismicRichText field={slice.primary.body} />
+      </div>
+
+      <div className="grid  w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-8">
+        {slice.primary.product.map(
+          ({ skateboard }) =>
+            isFilled.contentRelationship(skateboard) && (
+              <SkateboardProduct key={skateboard.id} id={skateboard.id} />
+            ),
+        )}
+      </div>
+    </Bounded>
+  );
+};
+
+export default ProductGrid;

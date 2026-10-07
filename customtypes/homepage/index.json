@@ -8,6 +8,18 @@
           "choices": {
             "hero_section": {
               "type": "SharedSlice"
+            },
+            "product_grid": {
+              "type": "SharedSlice"
+            },
+            "text_and_image": {
+              "type": "SharedSlice"
+            },
+            "video_block": {
+              "type": "SharedSlice"
+            },
+            "team_grid": {
+              "type": "SharedSlice"
             }
           }
         },
