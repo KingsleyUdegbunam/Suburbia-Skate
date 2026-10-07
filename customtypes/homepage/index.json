@@ -14,6 +14,9 @@
             },
             "text_and_image": {
               "type": "SharedSlice"
+            },
+            "video_block": {
+              "type": "SharedSlice"
             }
           }
         },

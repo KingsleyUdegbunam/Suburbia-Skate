@@ -46,7 +46,7 @@ type ContentRelationshipFieldWithData<
 		>
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomepageDocumentDataSlicesSlice = HeroSectionSlice | ProductGridSlice | TextAndImageSlice
+type HomepageDocumentDataSlicesSlice = HeroSectionSlice | ProductGridSlice | TextAndImageSlice | VideoBlockSlice
 
 /**
  * Content for Homepage documents
@@ -536,6 +536,44 @@ type TextAndImageSliceVariation = TextAndImageSliceDefault | TextAndImageSliceIm
  */
 export type TextAndImageSlice = prismic.SharedSlice<"text_and_image", TextAndImageSliceVariation>;
 
+/**
+ * Primary content in *VideoBlock → Default → Primary*
+ */
+export interface VideoBlockSliceDefaultPrimary {
+	/**
+	 * YouTube Video ID field in *VideoBlock → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: video_block.default.primary.you_tube_video_id
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	you_tube_video_id: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for VideoBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideoBlockSliceDefault = prismic.SharedSliceVariation<"default", Simplify<VideoBlockSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *VideoBlock*
+ */
+type VideoBlockSliceVariation = VideoBlockSliceDefault
+
+/**
+ * VideoBlock Shared Slice
+ *
+ * - **API ID**: `video_block`
+ * - **Description**: VideoBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideoBlockSlice = prismic.SharedSlice<"video_block", VideoBlockSliceVariation>;
+
 declare module "@prismicio/client" {
 	interface CreateClient {
 		(repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
@@ -574,7 +612,11 @@ declare module "@prismicio/client" {
 			TextAndImageSliceImageOnLeftPrimary,
 			TextAndImageSliceVariation,
 			TextAndImageSliceDefault,
-			TextAndImageSliceImageOnLeft
+			TextAndImageSliceImageOnLeft,
+			VideoBlockSlice,
+			VideoBlockSliceDefaultPrimary,
+			VideoBlockSliceVariation,
+			VideoBlockSliceDefault
 		}
 	}
 }
