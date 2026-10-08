@@ -44,6 +44,31 @@
           "repeat": true
         },
         "type": "Group"
+      },
+      "footer_image": {
+        "config": {
+          "constraint": {},
+          "label": "Footer Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "footer_skateboard": {
+        "config": {
+          "fields": {
+            "skateboard": {
+              "config": {
+                "constraint": {},
+                "label": "Skateboard",
+                "thumbnails": []
+              },
+              "type": "Image"
+            }
+          },
+          "label": "Footer Skateboard",
+          "repeat": true
+        },
+        "type": "Group"
       }
     }
   },
