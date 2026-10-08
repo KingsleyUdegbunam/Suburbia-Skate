@@ -4,6 +4,7 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import { Header } from "../components/Header";
 import { SVGFilters } from "../components/SVGFilter";
+import { Footer } from "../components/Footer";
 
 const bowlbyOne = Bowlby_One_SC({
   variable: "--font-bowlby-sc",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main>
           <Header />
           {children}
+          <Footer />
         </main>
         <SVGFilters />
       </body>
