@@ -11,6 +11,7 @@ import { Heading } from "@/src/components/Heading";
 import clsx from "clsx";
 import { ButtonLink } from "@/src/components/ButtonLink";
 import { ParallaxImage } from "./components/ParallaxImage";
+import { SlideIn } from "@/src/components/SlideIn";
 
 declare module "react" {
   interface CSSProperties {
@@ -47,20 +48,26 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice, index }) => {
             slice.variation === "imageOnLeft" && "order-2",
           )}
         >
-          <Heading as="h2">
-            <PrismicText field={slice.primary.heading} />
-          </Heading>
+          <SlideIn>
+            <Heading as="h2">
+              <PrismicText field={slice.primary.heading} />
+            </Heading>
+          </SlideIn>
 
-          <div className="max-w-md leading-relaxed text-lg">
-            <PrismicRichText field={slice.primary.body} />
-          </div>
+          <SlideIn>
+            <div className="max-w-md leading-relaxed text-lg">
+              <PrismicRichText field={slice.primary.body} />
+            </div>
+          </SlideIn>
 
-          <ButtonLink
-            field={slice.primary.button}
-            color={THEME === "Lime" ? "orange" : "lime"}
-          >
-            {slice.primary.button.text}
-          </ButtonLink>
+          <SlideIn>
+            <ButtonLink
+              field={slice.primary.button}
+              color={THEME === "Lime" ? "orange" : "lime"}
+            >
+              {slice.primary.button.text}
+            </ButtonLink>
+          </SlideIn>
         </div>
 
         <ParallaxImage
