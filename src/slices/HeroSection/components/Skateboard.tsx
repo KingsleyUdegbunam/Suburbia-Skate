@@ -6,6 +6,7 @@ import * as THREE from "three";
 import React, { useMemo } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import { metalness } from "three/tsl";
 
 type SkataebaordProps = {};
 
@@ -58,6 +59,16 @@ export function Skateboard(props: SkataebaordProps) {
     return material;
   }, [gripTapeDiffuse, gripTapeRoughness]);
 
+  const boltColor = "#555555";
+
+  const boltMaterial = useMemo(() => {
+    return new THREE.MeshStandardMaterial({
+      color: boltColor,
+      metalness: 0.5,
+      roughness: 0.3,
+    });
+  }, [boltColor]);
+
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
@@ -107,7 +118,7 @@ export function Skateboard(props: SkataebaordProps) {
           castShadow
           receiveShadow
           geometry={nodes.Bolts.geometry}
-          material={nodes.Bolts.material}
+          material={boltMaterial}
           position={[0, 0.198, 0]}
           rotation={[Math.PI, 0, Math.PI]}
         />
