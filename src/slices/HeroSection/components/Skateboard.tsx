@@ -69,6 +69,25 @@ export function Skateboard(props: SkataebaordProps) {
     });
   }, [boltColor]);
 
+  const truckColor = "#555555";
+
+  const metalNormal = useTexture("/skateboard/metal-normal.avif", (texture) => {
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(8, 8);
+    texture.anisotropy = 8;
+  });
+
+  const truckMaterial = useMemo(() => {
+    return new THREE.MeshStandardMaterial({
+      color: truckColor,
+      metalness: 0.9,
+      roughness: 0.25,
+      normalMap: metalNormal,
+      normalScale: new THREE.Vector2(0.3, 0.3),
+    });
+  }, [truckColor, metalNormal]);
+
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
@@ -136,7 +155,7 @@ export function Skateboard(props: SkataebaordProps) {
           castShadow
           receiveShadow
           geometry={nodes.Baseplates.geometry}
-          material={nodes.Baseplates.material}
+          material={truckMaterial}
           position={[0, 0.211, 0]}
         />
         <mesh
@@ -144,7 +163,7 @@ export function Skateboard(props: SkataebaordProps) {
           castShadow
           receiveShadow
           geometry={nodes.Truck1.geometry}
-          material={nodes.Truck1.material}
+          material={truckMaterial}
           position={[0, 0.101, -0.617]}
         />
         <mesh
@@ -152,7 +171,7 @@ export function Skateboard(props: SkataebaordProps) {
           castShadow
           receiveShadow
           geometry={nodes.Truck2.geometry}
-          material={nodes.Truck2.material}
+          material={truckMaterial}
           position={[0, 0.101, 0.617]}
           rotation={[Math.PI, 0, Math.PI]}
         />
