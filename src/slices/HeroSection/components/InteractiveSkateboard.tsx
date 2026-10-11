@@ -1,12 +1,14 @@
 "use client";
 
 import * as THREE from "three";
-import { Canvas, ThreeEvent } from "@react-three/fiber";
-import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
-import { Suspense, useRef, useState } from "react";
+import { Canvas, ThreeEvent, useThree } from "@react-three/fiber";
+import { ContactShadows, Environment } from "@react-three/drei";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Skateboard } from "./Skateboard";
 import gsap from "gsap";
 import { Hotspot } from "./Hotspot";
+
+const INITIAL_CAMERA_POSITION = [1.5, 1, 1.4] as const;
 
 export type InteractiveSkateboardProps = {
   deckTextureURL: string;
@@ -25,7 +27,7 @@ export function InteractiveSkateboard({
     <div className="absolute inset-0 z-10 flex items-center justify-center">
       <Canvas
         className="min-h-240 w-full"
-        camera={{ position: [1.5, 1, 1.4], fov: 55 }}
+        camera={{ position: INITIAL_CAMERA_POSITION, fov: 55 }}
       >
         <Suspense>
           <Scene
@@ -51,6 +53,24 @@ function Scene({
     middle: true,
     back: true,
   });
+
+  const { camera } = useThree();
+
+  useEffect(() => {
+    camera.lookAt(new THREE.Vector3(-0.2, 0.15, 0));
+    setZoom();
+    function setZoom() {
+      const scale = Math.max(Math.min(window.innerWidth / 1000, 2.2), 1);
+      camera.position.x = INITIAL_CAMERA_POSITION[0] * scale;
+      camera.position.y = INITIAL_CAMERA_POSITION[1] * scale;
+      camera.position.z = INITIAL_CAMERA_POSITION[2] * scale;
+    }
+
+    window.addEventListener("resize", setZoom);
+    return () => {
+      window.removeEventListener("resize", setZoom);
+    };
+  }, [camera]);
 
   const [isAnimating, setIsAnimating] = useState(false);
   const containerRef = useRef<THREE.Group>(null);
@@ -133,7 +153,6 @@ function Scene({
   }
   return (
     <group>
-      <OrbitControls />
       <Environment files={"/hdr/warehouse-256.hdr"} />
       <group ref={originRef}>
         <group ref={containerRef} position={[-0.25, 0, -0.635]}>
