@@ -1,9 +1,11 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
+import { Canvas, ThreeEvent } from "@react-three/fiber";
 import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useRef } from "react";
 import { Skateboard } from "./Skateboard";
+import gsap from "gsap";
 
 export type InteractiveSkateboardProps = {
   deckTextureURL: string;
@@ -43,20 +45,63 @@ function Scene({
   truckColor,
   boltColor,
 }: InteractiveSkateboardProps) {
+  const containerRef = useRef<THREE.Group>(null);
+
+  function jumpBoard(board: THREE.Group<THREE.Object3DEventMap>) {
+    if (!board) return;
+    gsap
+      .timeline()
+      .to(board.position, {
+        y: 0.8,
+        duration: 0.51,
+        ease: "power2.out",
+        delay: 0.26,
+      })
+      .to(board.position, { y: 0, duration: 0.43, ease: "power2.in" });
+  }
+
+  function ollie(board: THREE.Group<THREE.Object3DEventMap>) {
+    jumpBoard(board);
+    gsap
+      .timeline()
+      .to(board.rotation, { x: -0.6, duration: 0.26, ease: "none" })
+      .to(board.rotation, { x: 0.4, duration: 0.8, ease: "power2.in" })
+      .to(board.rotation, { x: 0, duration: 0.12, ease: "none" });
+  }
+
+  function onClick(event: ThreeEvent<MouseEvent>) {
+    event.stopPropagation();
+    const board = containerRef.current;
+    if (!board) return;
+
+    const { name } = event.object;
+    if (name === "back") {
+      ollie(board);
+    }
+  }
   return (
     <group>
       <OrbitControls />
       <Environment files={"/hdr/warehouse-256.hdr"} />
 
-      <Skateboard
-        wheelTextureURLs={[wheelTextureURL]}
-        deckTextureURLs={[deckTextureURL]}
-        deckTextureURL={deckTextureURL}
-        wheelTextureURL={wheelTextureURL}
-        truckColor={truckColor}
-        boltColor={boltColor}
-        constantWheelSpin
-      />
+      <group ref={containerRef} position={[-0.25, 0, -0.635]}>
+        <group position={[0, -0.086, 0.635]}>
+          <Skateboard
+            wheelTextureURLs={[wheelTextureURL]}
+            deckTextureURLs={[deckTextureURL]}
+            deckTextureURL={deckTextureURL}
+            wheelTextureURL={wheelTextureURL}
+            truckColor={truckColor}
+            boltColor={boltColor}
+            constantWheelSpin
+          />
+
+          <mesh position={[0, 0.27, -0.9]} name="back" onClick={onClick}>
+            <meshStandardMaterial />
+            <boxGeometry args={[0.6, 0.2, 0.58]} />
+          </mesh>
+        </group>
+      </group>
       <ContactShadows opacity={0.6} position={[0, -0.08, 0]} />
     </group>
   );
