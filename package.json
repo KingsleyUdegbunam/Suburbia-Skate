@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@prismicio/client": "^7.22.1",
     "@prismicio/next": "^2.3.3",
     "@prismicio/react": "^3.5.1",
