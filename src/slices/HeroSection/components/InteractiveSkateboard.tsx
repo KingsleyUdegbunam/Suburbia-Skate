@@ -69,6 +69,24 @@ function Scene({
       .to(board.rotation, { x: 0, duration: 0.12, ease: "none" });
   }
 
+  function kickflip(board: THREE.Group) {
+    jumpBoard(board);
+    gsap
+      .timeline()
+      .to(board.rotation, { x: -0.6, duration: 0.26, ease: "none" })
+      .to(board.rotation, { x: 0.4, duration: 0.8, ease: "power2.in" })
+      .to(
+        board.rotation,
+        {
+          z: `+=${Math.PI * 2}`,
+          duration: 0.78,
+          ease: "none",
+        },
+        0.26,
+      )
+      .to(board.rotation, { x: 0, duration: 0.12, ease: "none" });
+  }
+
   function onClick(event: ThreeEvent<MouseEvent>) {
     event.stopPropagation();
     const board = containerRef.current;
@@ -77,6 +95,8 @@ function Scene({
     const { name } = event.object;
     if (name === "back") {
       ollie(board);
+    } else if (name === "middle") {
+      kickflip(board);
     }
   }
   return (
@@ -95,8 +115,22 @@ function Scene({
             boltColor={boltColor}
             constantWheelSpin
           />
+          <mesh
+            position={[0, 0.27, 0]}
+            name="middle"
+            onClick={onClick}
+            visible={false}
+          >
+            <meshStandardMaterial />
+            <boxGeometry args={[0.6, 0.1, 1.2]} />
+          </mesh>
 
-          <mesh position={[0, 0.27, -0.9]} name="back" onClick={onClick}>
+          <mesh
+            position={[0, 0.27, -0.9]}
+            name="back"
+            onClick={onClick}
+            visible={false}
+          >
             <meshStandardMaterial />
             <boxGeometry args={[0.6, 0.2, 0.58]} />
           </mesh>
