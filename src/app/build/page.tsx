@@ -5,6 +5,8 @@ import { Heading } from "@/src/components/Heading";
 import { Logo } from "@/src/components/Logo";
 import { CustomizerControlsProvider } from "./context";
 import { createClient } from "@/prismicio";
+import Preview from "./Preview";
+import { asImageSrc } from "@prismicio/client";
 
 export default async function page() {
   const client = createClient();
@@ -16,6 +18,14 @@ export default async function page() {
   const defaultDeck = decks[0];
   const defaultBolt = metals[0];
   const defaultTruck = metals[0];
+
+  const wheelTextureURLs = wheels
+    .map((wheel) => asImageSrc(wheel.texture))
+    .filter((url): url is string => Boolean(url));
+
+  const deckTextureURLs = decks
+    .map((deck) => asImageSrc(deck.texture))
+    .filter((url): url is string => Boolean(url));
 
   return (
     <div className="flex min-h-screen flex-col lg:flex-row">
@@ -29,7 +39,12 @@ export default async function page() {
           <Link href="/" className="absolute left-6 top-6">
             <Logo className="h-12 text-white" />
           </Link>
-          <div className="absolute inset-0"></div>
+          <div className="absolute inset-0">
+            <Preview
+              deckTextureURLs={deckTextureURLs}
+              wheelTextureURLs={wheelTextureURLs}
+            />
+          </div>
         </div>
         <div className="grow bg-texture bg-zinc-900 text-white p-4 md:p-6 lg:w-96 lg:shrink-0 lg:grow-0">
           <Heading as="h1" size="sm">
