@@ -1,7 +1,9 @@
-import { Bowlby_One_SC, DM_Mono } from "next/font/google";
 import "./globals.css";
+import { Bowlby_One_SC, DM_Mono } from "next/font/google";
 import { PrismicPreview } from "@prismicio/next";
-import { repositoryName } from "@/prismicio";
+import { createClient, repositoryName } from "@/prismicio";
+import { Metadata } from "next";
+
 import { SVGFilters } from "../components/SVGFilter";
 
 const bowlbyOne = Bowlby_One_SC({
@@ -17,6 +19,20 @@ const dmMono = DM_Mono({
   weight: "500",
   subsets: ["latin"],
 });
+
+export async function generateMetadata(): Promise<Metadata> {
+  const client = createClient();
+
+  const settings = await client.getSingle("settings");
+  return {
+    title: settings.data.site_title,
+    description: settings.data.meta_description,
+
+    openGraph: {
+      images: settings.data.fallback_og_image.url ?? undefined,
+    },
+  };
+}
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

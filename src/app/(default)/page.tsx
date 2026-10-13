@@ -1,6 +1,5 @@
 // app/page.tsx
-import type { Metadata } from "next";
-import { asImageSrc, Content } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { SliceComponentProps, SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/src/slices";
@@ -25,20 +24,6 @@ export default async function Page() {
       }}
     />
   );
-}
-
-export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient();
-  const page = await client.getSingle("homepage");
-  const image = asImageSrc(page.data.meta_image);
-
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-    openGraph: {
-      images: image ? [{ url: image }] : [],
-    },
-  };
 }
 
 type TextAndImageBundleSlice = {
