@@ -55,7 +55,7 @@ export default function Controls({ wheels, decks, metals, className }: Props) {
         })}
       </Options>
 
-      <Options title="Wheels" selectedName={selectedDeck?.uid}>
+      <Options title="Wheels" selectedName={selectedWheel?.uid}>
         {wheels.map((wheel) => {
           if (!wheel) return;
 
