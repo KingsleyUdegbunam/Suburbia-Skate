@@ -8,6 +8,7 @@ import { Logo } from "@/src/components/Logo";
 import { CustomizerControlsProvider } from "./context";
 import Preview from "./Preview";
 import Controls from "./Controls";
+import Loading from "./Loading";
 
 export type SearchParams = {
   wheel?: string;
@@ -78,6 +79,7 @@ export default async function page(props: {
           </div>
         </div>
       </CustomizerControlsProvider>
+      <Loading />
     </div>
   );
 }
