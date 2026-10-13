@@ -7,11 +7,11 @@ import { CustomizerControlsProvider } from "./context";
 import { createClient } from "@/prismicio";
 import Preview from "./Preview";
 import { asImageSrc } from "@prismicio/client";
+import Controls from "./Controls";
 
 export default async function page() {
   const client = createClient();
   const customizerSettings = await client.getSingle("board_customizer");
-  console.log(customizerSettings.data);
   const { wheels, decks, metals } = customizerSettings.data;
 
   const defaultWheel = wheels[0];
@@ -51,7 +51,12 @@ export default async function page() {
             Build your board
           </Heading>
 
-          <div></div>
+          <Controls
+            decks={decks}
+            metals={metals}
+            wheels={wheels}
+            className="mb-6"
+          />
           <div>
             <ButtonLink href="/" color="lime" icon="plus">
               Add to Cart
