@@ -50,7 +50,7 @@ export default async function page(props: {
         defaultTruck={defaultTruck}
       >
         <div className="relative aspect-square lg:aspect-auto shrink-0 lg:grow bg-[#3A414A]">
-          <Link href="/" className="absolute left-6 top-6">
+          <Link href="/" className="absolute z-10 left-6 top-6">
             <Logo className="h-12 text-white" />
           </Link>
           <div className="absolute inset-0">
