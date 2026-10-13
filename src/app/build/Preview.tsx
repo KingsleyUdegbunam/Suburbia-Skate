@@ -107,7 +107,7 @@ function StageFloor() {
       material={material}
       castShadow
       receiveShadow
-      position={[0, -0.005, 0]}
+      position={[0, -0.09, 0]}
       rotation={[-Math.PI / 2, 0, 0]}
     >
       <circleGeometry args={[20, 32]} />

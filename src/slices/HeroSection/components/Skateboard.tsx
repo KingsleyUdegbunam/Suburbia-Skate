@@ -173,7 +173,7 @@ export function Skateboard({
         },
         side: {
           rotation: [0, 0, Math.PI / 2],
-          postion: [0, 0.295, 0],
+          postion: [0, 0.205, 0],
         },
       }) as const,
     [],
