@@ -7,23 +7,24 @@ import { useEffect, useMemo, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { InteractiveSkateboardProps } from "./InteractiveSkateboard";
-import { useFrame } from "@react-three/fiber";
+import { ObjectMap, useFrame } from "@react-three/fiber";
 import gsap from "gsap";
 
-type GLTFResult = GLTF & {
-  nodes: {
-    GripTape: THREE.Mesh;
-    Wheel1: THREE.Mesh;
-    Wheel2: THREE.Mesh;
-    Deck: THREE.Mesh;
-    Wheel4: THREE.Mesh;
-    Bolts: THREE.Mesh;
-    Wheel3: THREE.Mesh;
-    Baseplates: THREE.Mesh;
-    Truck1: THREE.Mesh;
-    Truck2: THREE.Mesh;
+type GLTFResult = GLTF &
+  ObjectMap & {
+    nodes: {
+      GripTape: THREE.Mesh;
+      Wheel1: THREE.Mesh;
+      Wheel2: THREE.Mesh;
+      Deck: THREE.Mesh;
+      Wheel4: THREE.Mesh;
+      Bolts: THREE.Mesh;
+      Wheel3: THREE.Mesh;
+      Baseplates: THREE.Mesh;
+      Truck1: THREE.Mesh;
+      Truck2: THREE.Mesh;
+    };
   };
-};
 
 type SkateboardProps = InteractiveSkateboardProps & {
   wheelTextureURLs: string[];
