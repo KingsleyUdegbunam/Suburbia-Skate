@@ -1,8 +1,8 @@
-import { CSSProperties, ElementType, ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import clsx from "clsx";
 
 type BoundedProps = {
-  as?: ElementType;
+  as?: "div" | "section" | "article" | "nav" | "footer" | "header";
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
