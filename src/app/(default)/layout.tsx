@@ -1,8 +1,8 @@
 import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
-import { JSX } from "react";
+import { ReactNode } from "react";
 
-type Props = { children: JSX.Element };
+type Props = { children: ReactNode };
 
 export default function Layout({ children }: Props) {
   return (
